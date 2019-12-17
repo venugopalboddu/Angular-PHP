@@ -10,37 +10,60 @@ import { Router } from '@angular/router';
 })
 export class RegComponent implements OnInit {
 
-  fdata:any;
-  results:any;
+  fdata: any;
+  results: any;
   submitted = false;
   emplye: any;
   searchText;
   msg: string;
-  constructor(private s: DataService, private fb: FormBuilder, private router: Router) {} 
-    form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      uname: ['', [Validators.required, Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+  val: boolean;
+  val1: boolean;
+  reg: any;
+  constructor(private s: DataService, private fb: FormBuilder, private router: Router) { }
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    uname: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   })
-ngOnInit() {
+  ngOnInit() {
 
   }
 
-    get sf() { return this.form.controls; }
-    onSignup() {
+  get sf() { return this.form.controls; }
+  onSignup() {
     this.submitted = true;
-
+    let regDetails = {
+      email: this.form.controls['email'].value,
+      uname: this.form.controls['uname'].value
+    }
     // stop here if form is invalid
     if (this.form.invalid) {
-        return;
+      return;
     }
-    alert('Are you sure want to enter data ?')
-    this.s.po(this.form.value).subscribe(res=>{
-      console.log("register", res);
-      this.router.navigate(['/login']);
+    this.s.already(regDetails).subscribe((res) => {
+      console.log(res);
+      this.reg = res;
+      if (this.reg == ("Username already exists")) {
+        this.val = true;
+        //this.form.reset();
+        this.submitted = false;
+      } else if(this.reg == "Email already exists"){
+        this.val = true;
+        //this.form.reset();
+        this.submitted = false;
+      }
+      else {
+        alert('Are you sure want to enter data ?')
+        this.s.po(this.form.value).subscribe(res => {
+          console.log("register", res);
+          this.router.navigate(['/login']);
+          this.val = false;
+        
+        });
+      }
     });
-    this.form.reset();
-    this.submitted = false;
-}
+
+
+  }
 
 }

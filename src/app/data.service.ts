@@ -12,6 +12,9 @@ export class DataService {
   po(d) {
     return this.ht.post('https://venugopalboddu88.000webhostapp.com/insert.php', d);
   }
+  already(e){
+    return this.ht.post('https://venugopalboddu88.000webhostapp.com/already.php', e, {responseType: 'text'});
+  }
   ge() {
     return this.ht.get('https://venugopalboddu88.000webhostapp.com/read.php');
   }

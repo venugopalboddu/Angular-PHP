@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-    debugger;
+
     this.submitted = true;
     let loginDetails = {
       uname: this.form.controls['uname'].value,
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.form.reset();
         this.submitted = false;
       }else{
-        alert("Login successfull");
+        //alert("Login successfull");
         this.s.sendToken(this.form.value.uname);
         this.router.navigate(['/dash']);
         this.val = false;

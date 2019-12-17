@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard';
 import { RegComponent } from './reg/reg.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
