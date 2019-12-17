@@ -1,0 +1,8 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="height:60px">
+   
+    <a class="navbar-brand" href="#">
+        <img src="https://s3.amazonaws.com/myamcatimages/company/images/8527.png" height="50px"/>
+    </a>
+    <button type="button" class="btn btn-warning" style="margin-left: 1350px" *ngIf="s.isLoggedIn()" (click)="s.logout()"><b>Logout</b></button>
+  </nav><br/><br/>
+  <h4 class="text-center">Welcome {{fname}}!!!</h4>

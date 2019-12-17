@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "fname": "Venugopal",
+      "lname": "Boddu",
+      "password": "venugopal",
+      "gender": "male"
+    },
+    {
+      "id": 2,
+      "fname": "Rani",
+      "lname": "Kumari",
+      "password": "rani",
+      "gender": "female"
+    },
+    {
+      "id": 3,
+      "fname": "Naveen",
+      "lname": "Kumar",
+      "password": "naveen",
+      "gender": "male"
+    },
+    {
+      "id": 4,
+      "fname": "Pavani",
+      "lname": "Kolla",
+      "password": "pavani",
+      "gender": "female"
+    }
+  ]
+}
