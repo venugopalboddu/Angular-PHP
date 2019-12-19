@@ -10,13 +10,16 @@ export class DataService {
   constructor(private ht: HttpClient, private myRoute: Router) { }
 
   po(d) {
-    return this.ht.post('https://venugopalboddu88.000webhostapp.com/insert.php', d);
+    return this.ht.post('https://venugopalboddu88.000webhostapp.com/insert.php', d, {responseType: 'text'});
   }
   already(e){
     return this.ht.post('https://venugopalboddu88.000webhostapp.com/already.php', e, {responseType: 'text'});
   }
   ge() {
     return this.ht.get('https://venugopalboddu88.000webhostapp.com/read.php');
+  }
+  postData(d) {
+    return this.ht.post('https://venugopalboddu88.000webhostapp.com/job.php', d);
   }
   login1(d) {
     return this.ht.post('https://venugopalboddu88.000webhostapp.com/login.php', d, {responseType: 'text'});

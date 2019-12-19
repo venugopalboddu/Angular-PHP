@@ -19,7 +19,9 @@ export class RegComponent implements OnInit {
   val: boolean;
   val1: boolean;
   reg: any;
-  constructor(private s: DataService, private fb: FormBuilder, private router: Router) { }
+  constructor(private s: DataService, private fb: FormBuilder, private router: Router) {
+    
+   }
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     uname: ['', [Validators.required, Validators.minLength(6)]],
@@ -58,7 +60,6 @@ export class RegComponent implements OnInit {
           console.log("register", res);
           this.router.navigate(['/login']);
           this.val = false;
-        
         });
       }
     });

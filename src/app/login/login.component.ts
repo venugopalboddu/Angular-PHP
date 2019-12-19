@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { first } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -15,19 +15,21 @@ export class LoginComponent implements OnInit {
   submitted = false;
   val: boolean;
   loindetatils:any;
-  constructor(private s: DataService, private fb: FormBuilder, private router: Router, private ht: HttpClient) { }
+  
+  constructor(private s: DataService, private fb: FormBuilder, private router: Router, private http: HttpClient) { }
+
   form = this.fb.group({
     id: [],
     uname: ['', Validators.required],
     password: ['', Validators.required]
   });
   ngOnInit() {
-
+   
   }
   get f() { return this.form.controls; }
 
   onSubmit() {
-
+  //debugger;
     this.submitted = true;
     let loginDetails = {
       uname: this.form.controls['uname'].value,

@@ -1,8 +1,29 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="height:60px">
-   
-    <a class="navbar-brand" href="#">
-        <img src="https://s3.amazonaws.com/myamcatimages/company/images/8527.png" height="50px"/>
-    </a>
-    <button type="button" class="btn btn-warning" style="margin-left: 1350px" *ngIf="s.isLoggedIn()" (click)="s.logout()"><b>Logout</b></button>
-  </nav><br/><br/>
-  <h4 class="text-center">Welcome {{fname}}!!!</h4>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><img src="https://s3.amazonaws.com/myamcatimages/company/images/8527.png"
+      height="50px" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse offset-md-10" id="navbarTogglerDemo02">
+
+
+    <button type="button" class="btn btn-warning" *ngIf="s.isLoggedIn()" (click)="s.logout()"><b>Logout</b></button>
+
+  </div>
+</nav><br/>
+
+<div class="col-md-4 offset-md-4">
+  <h5 class="text-center"><img src="https://s3.amazonaws.com/myamcatimages/company/images/8527.png" height="50px" />
+  </h5>
+  <hr />
+  <h4 class="text-center">Hello <span style="color: #1d62a7;">{{fname}}</span></h4>
+  <h4 class="text-center">Ojas welcomes you!</h4>
+  <h4 class="text-center">We build your future!</h4>
+  <br />
+  <h6 class="text-center"><button class="btn btn-success" routerLink="job" *ngIf="status" (click)="apply()">Apply for
+      Job</button></h6>
+    
+  <router-outlet></router-outlet>
+</div>

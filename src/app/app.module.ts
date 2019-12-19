@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { OutComponent } from './out/out.component';
 import { AuthGuard } from './auth.guard';
 import { RegComponent } from './reg/reg.component';
+import { JobComponent } from './job/job.component';
 
 
 
@@ -22,6 +23,7 @@ import { RegComponent } from './reg/reg.component';
     LoginComponent,
     OutComponent,
     RegComponent,
+    JobComponent,
   ],
   imports: [
     BrowserModule,
