@@ -13,9 +13,10 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   submitted = false;
-  val: boolean;
   loindetatils:any;
-  
+  customerArray = [];
+  name:any;
+  showDeletedMessage: boolean;
   constructor(private s: DataService, private fb: FormBuilder, private router: Router, private http: HttpClient) { }
 
   form = this.fb.group({
@@ -29,27 +30,38 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-  //debugger;
+  
     this.submitted = true;
+    
     let loginDetails = {
       uname: this.form.controls['uname'].value,
       password: this.form.controls['password'].value
     }
+    
     if (this.form.invalid) {
       return;
     }
-    this.s.login1(loginDetails).subscribe(resp => {
-      console.log(resp);
-      this.loindetatils = resp;
-      if (this.loindetatils=="Your Login Name or Password is invalid") {
-        this.val = true;
+    this.s.getEmployees().subscribe(
+      list => {
+        this.customerArray = list.map(item => {
+          return {
+            $key: item.key,
+            ...item.payload.val()
+          };
+        });
+    // console.log("name", loginDetails);
+    // console.log("test", this.customerArray);
+
+      if (this.name === this.customerArray.find(x=> (x.uname === loginDetails.uname) && (x.password === loginDetails.password))) {
         this.form.reset();
         this.submitted = false;
+        this.showDeletedMessage = true;
+        setTimeout(() => this.showDeletedMessage = false, 3000);
       }else{
         //alert("Login successfull");
         this.s.sendToken(this.form.value.uname);
         this.router.navigate(['/dash']);
-        this.val = false;
+        
       }
     });
   }

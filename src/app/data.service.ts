@@ -1,44 +1,50 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private ht: HttpClient, private myRoute: Router) { }
+  constructor(private firebase: AngularFireDatabase, private myRoute: Router, private fb: FormBuilder) { }
+  employeeList: AngularFireList<any>;
 
-  po(d) {
-    return this.ht.post('https://venugopalboddu88.000webhostapp.com/insert.php', d, {responseType: 'text'});
+  form = this.fb.group({
+    $key: [null],
+    email: ['', [Validators.required, Validators.email]],
+    uname: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+
+  getEmployees() {
+    this.employeeList = this.firebase.list('oemployees');
+    return this.employeeList.snapshotChanges();
   }
-  already(e){
-    return this.ht.post('https://venugopalboddu88.000webhostapp.com/already.php', e, {responseType: 'text'});
-  }
-  ge() {
-    return this.ht.get('https://venugopalboddu88.000webhostapp.com/read.php');
-  }
-  postData(d) {
-    return this.ht.post('https://venugopalboddu88.000webhostapp.com/job.php', d);
-  }
-  login1(d) {
-    return this.ht.post('https://venugopalboddu88.000webhostapp.com/login.php', d, {responseType: 'text'});
+
+  insertEmp(employee) {
+    this.employeeList.push({
+      email: employee.email,
+      uname: employee.uname,
+      password: employee.password
+    });
   }
   sendToken(token: string) {
-    localStorage.setItem("LoggedInUser", token);
+    localStorage.setItem('LoggedInUser', token);
   }
   getToken() {
-    return localStorage.getItem("LoggedInUser");
+    return localStorage.getItem('LoggedInUser');
   }
   isLoggedIn() {
     return this.getToken() !== null;
   }
   logout() {
-    localStorage.removeItem("LoggedInUser");
-    this.myRoute.navigate(["login"]);
+    localStorage.removeItem('LoggedInUser');
+    this.myRoute.navigate(['login']);
   }
   login() {
-    localStorage.removeItem("LoggedInUser");
-    this.myRoute.navigate(["login"]);
+    localStorage.removeItem('LoggedInUser');
+    this.myRoute.navigate(['login']);
   }
 }
