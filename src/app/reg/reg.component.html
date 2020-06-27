@@ -1,10 +1,9 @@
 <div class="container" style="margin-top: 50px">
     <div class="row"> 
           <div class="col-md-7 offset-md-3">  
-  <h5>Angular <span style="background-color: yellow">Signup</span> Page With Firebase Database</h5><br/><hr/>
+  <h5>Signup</h5><br/><hr/>
   <h5 class="text-center"><img src="https://s3.amazonaws.com/myamcatimages/company/images/8527.png" height="50px"/></h5><br/>
-  <form [formGroup]="this.s.form" (ngSubmit)="sendFirebase()">
-      <input type="hidden" formControlName="$key">
+  <form [formGroup]="form" (ngSubmit)="onSignup()">
     <div class="form-group">
         <label><b style="color: green">Email:</b></label>
         <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && sf.email.errors }" />
@@ -37,12 +36,8 @@
       <button type="button" class="btn btn-success" [routerLink]="['/login']">Login</button>
   </div>
   </form><br>
-  <div class="alert alert-info"  *ngIf="showSuccessMessage">
-    You have been registered successfully
-  </div>
-  <div class="alert alert-danger" *ngIf="showDeletedMessage">
-   Username or Email is already existed
-  </div>
+  <b *ngIf="val" style="color: red">Username or Email already exists</b>
+  <!-- <b *ngIf="val1" style="color: red"> already exists</b> -->
   </div>
     </div>
    

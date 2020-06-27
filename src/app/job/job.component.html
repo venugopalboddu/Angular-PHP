@@ -1,0 +1,43 @@
+<hr/>
+<form [formGroup]="form" class="form-group" *ngIf="status1"  (ngSubmit)="onSubmit()">
+    <div class="form-group" >
+        <label><b style="color: green">Your Name:</b></label>
+        <input type="text" [(ngModel)]="fname" formControlName="uname" class="form-control">
+        
+    </div>
+    <div class="form-group">
+        <label><b style="color: green">Your Email ID:</b></label>
+        <input type="email" [(ngModel)]="email2.email"  formControlName="email" class="form-control">
+     
+    </div>
+    <div class="form-group">
+        <label><b style="color: green">Your Education Qualification:</b></label>
+        <select class="custom-select" (change)="changeEducation($event)" formControlName="edu">
+            <option value="">Select Education</option>
+            <option *ngFor="let e of education" [ngValue]="e">{{e}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && f.edu.errors">
+            <div *ngIf="f.edu.errors.required">Please select education</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><b style="color: green">Select Position Name:</b></label>
+        <select class="custom-select" (change)="changeCourse($event)" formControlName="course">
+            <option value="">Select Position</option>
+            <option *ngFor="let cou of courses" [ngValue]="cou">{{cou}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && f.course.errors">
+            <div *ngIf="f.course.errors.required">Please select position</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success">Submit</button>&nbsp;
+    </div>
+</form>
+<b *ngIf="val" style="color: red">You missed education qualification or position name</b><br/><br/>
+<div class="alert alert-success" role="alert" *ngIf="status2">
+    <strong>{{msg}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>

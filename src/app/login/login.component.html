@@ -1,7 +1,7 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-7 offset-md-3">
-            <h5>Angular <span style="background-color: yellow">Login</span> Page With Firebase Database</h5><br/>
+            <h5>Login</h5><br/>
             <hr />
             <h5 class="text-center"><img src="https://s3.amazonaws.com/myamcatimages/company/images/8527.png"
                     height="50px" /></h5><br/>
@@ -27,10 +27,7 @@
                     <button type="button" class="btn btn-success" [routerLink]="['/reg']">Register</button>
                 </div>
             </form><br>
-           
-            <div class="alert alert-danger" *ngIf="showDeletedMessage">
-                Your Username or Password is invalid
-               </div>
+            <b *ngIf="val" style="color: red">Your Username or Password is invalid</b>
         </div>
     </div>
 

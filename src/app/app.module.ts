@@ -9,11 +9,11 @@ import { AppComponent } from './app.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { OutComponent } from './out/out.component';
 import { AuthGuard } from './auth.guard';
 import { RegComponent } from './reg/reg.component';
-import { AngularFireModule, FirebaseOptionsToken } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from 'src/environments/environment';
+import { JobComponent } from './job/job.component';
+
 
 
 @NgModule({
@@ -21,7 +21,9 @@ import { environment } from 'src/environments/environment';
     AppComponent,
     DashboardComponent,
     LoginComponent,
-     RegComponent
+    OutComponent,
+    RegComponent,
+    JobComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,7 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     ModalModule,
-    Ng2SearchPipeModule, AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
+    Ng2SearchPipeModule,
     ModalModule.forRoot()
   ],
   providers: [DataService, AuthGuard],
